@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model guilgee {
+  id          Int       @id @default(autoincrement())
+  receiver_id String?   @db.VarChar(20)
+  sender_id   String?   @db.VarChar(20)
+  created_at  DateTime? @default(now()) @db.Timestamp(0)
+  amount      Int?
+  title       String?   @db.VarChar(50)
+  description String?   @db.VarChar(200)
+}
+
+model project {
+  id                Int       @id @default(autoincrement())
+  title             String?   @db.VarChar(50)
+  description       String?   @db.VarChar(400)
+  owner_name        String?   @db.VarChar(30)
+  rating            Float?
+  review            Int?
+  contact_phone     String?   @db.VarChar(30)
+  carbon_price      Int?
+  status            String?   @db.VarChar(10)
+  start_date        DateTime? @db.Date
+  end_date          DateTime? @db.Date
+  volume            Int?
+  scale_per_year    Int?
+  primary_developer String?   @db.VarChar(50)
+  owner_address     String?   @db.VarChar(300)
+}
